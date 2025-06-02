@@ -7,6 +7,7 @@ from rest_framework import generics
 from .serializers import UserSerializer, NoteSerializer
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from .models import Note
+from django.http import JsonResponse
 
 
 class NoteListCreate(generics.ListCreateAPIView):
@@ -37,3 +38,6 @@ class CreateUserView(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = [AllowAny]
+
+def test_view(request):
+    return JsonResponse({"message": "Backend is working!"})
